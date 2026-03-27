@@ -159,7 +159,7 @@ const ItemDetailPage = () => {
 
   if (isItemLoading) {
     return (
-      <p className="mx-auto w-full max-w-5xl text-sm text-slate-600">
+      <p className="mx-auto w-full max-w-5xl text-sm text-textMain/75">
         Loading item details...
       </p>
     );
@@ -175,7 +175,7 @@ const ItemDetailPage = () => {
 
   if (!item) {
     return (
-      <p className="mx-auto w-full max-w-5xl text-sm text-slate-600">
+      <p className="mx-auto w-full max-w-5xl text-sm text-textMain/75">
         Item not found
       </p>
     );
@@ -193,14 +193,14 @@ const ItemDetailPage = () => {
     <>
       <section className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-7">
-          <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-container-low shadow-lg">
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
             <img
               src={getImageUrl(activeImage, item.category)}
               alt={item.title}
               onClick={() => setIsZoomOpen(true)}
               className="h-full w-full cursor-zoom-in object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute left-6 top-6 rounded-full bg-on-surface/70 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">
+            <div className="absolute left-6 top-6 rounded-full bg-textMain/80 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">
               Available
             </div>
           </div>
@@ -217,8 +217,8 @@ const ItemDetailPage = () => {
                     onClick={() => setSelectedImage(imagePath)}
                     className={`aspect-square overflow-hidden rounded-xl transition ${
                       isSelected
-                        ? "ring-2 ring-primary shadow-sm"
-                        : "bg-surface-container-low opacity-95 hover:opacity-80"
+                        ? "ring-2 ring-primary shadow-md"
+                        : "border border-border bg-card opacity-95 hover:opacity-80"
                     }`}
                   >
                     <img
@@ -233,53 +233,53 @@ const ItemDetailPage = () => {
           ) : null}
 
           <div className="space-y-3 pt-2">
-            <h3 className="font-headline text-2xl font-bold text-on-surface">
+            <h3 className="font-headline text-2xl font-bold text-textMain">
               Description
             </h3>
-            <p className="max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+            <p className="max-w-2xl text-sm leading-relaxed text-textMain/75">
               {item.description}
             </p>
           </div>
         </div>
 
-        <div className="sticky top-24 rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/15 lg:col-span-5">
+        <div className="sticky top-24 rounded-2xl border border-border bg-card p-8 shadow-lg lg:col-span-5">
           <div>
             <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
               <span className="material-symbols-outlined text-sm">school</span>
               {item.category}
             </div>
-            <h1 className="font-headline text-3xl font-extrabold tracking-tight text-on-surface">
+            <h1 className="font-headline text-3xl font-extrabold tracking-tight text-textMain">
               {item.title}
             </h1>
           </div>
 
           <div className="mb-8 mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-surface-container-low p-4">
-              <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+            <div className="rounded-xl border border-border bg-background p-4 shadow-md">
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-textMain/65">
                 Price per day
               </p>
               <p className="font-headline text-xl font-bold text-primary">
                 ₹ {item.pricePerDay}
               </p>
             </div>
-            <div className="rounded-xl bg-surface-container-low p-4">
-              <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+            <div className="rounded-xl border border-border bg-background p-4 shadow-md">
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-textMain/65">
                 Security deposit
               </p>
-              <p className="font-headline text-xl font-bold text-on-surface">
+              <p className="font-headline text-xl font-bold text-textMain">
                 ₹ {item.securityDeposit}
               </p>
             </div>
           </div>
 
           <div className="mb-8 space-y-4">
-            <label className="block text-sm font-semibold text-on-surface">
+            <label className="block text-sm font-semibold text-textMain">
               Select dates
             </label>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <span className="ml-1 block text-[10px] font-bold uppercase text-on-surface-variant">
+                <span className="ml-1 block text-[10px] font-bold uppercase text-textMain/65">
                   Start Date
                 </span>
                 <input
@@ -291,12 +291,12 @@ const ItemDetailPage = () => {
                     setStartDate(event.target.value);
                     setDateError("");
                   }}
-                  className="w-full rounded-lg border-0 bg-surface-container-low p-3 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-primary/20"
+                  className="w-full rounded-xl border border-border bg-background p-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <span className="ml-1 block text-[10px] font-bold uppercase text-on-surface-variant">
+                <span className="ml-1 block text-[10px] font-bold uppercase text-textMain/65">
                   End Date
                 </span>
                 <input
@@ -308,27 +308,27 @@ const ItemDetailPage = () => {
                     setEndDate(event.target.value);
                     setDateError("");
                   }}
-                  className="w-full rounded-lg border-0 bg-surface-container-low p-3 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-primary/20"
+                  className="w-full rounded-xl border border-border bg-background p-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
                 />
               </div>
             </div>
 
             {dateError ? (
-              <p className="text-sm text-error">{dateError}</p>
+              <p className="text-sm text-rose-600 dark:text-rose-400">
+                {dateError}
+              </p>
             ) : null}
           </div>
 
-          <div className="mb-8 rounded-xl border border-dashed border-outline-variant bg-surface-bright p-4 text-sm">
-            <p className="flex items-center justify-between text-on-surface-variant">
+          <div className="mb-8 rounded-xl border border-dashed border-border bg-background p-4 text-sm">
+            <p className="flex items-center justify-between text-textMain/75">
               <span>Number of days:</span>
-              <span className="font-bold text-on-surface">
+              <span className="font-bold text-textMain">
                 {bookingPreview.numberOfDays || 0}
               </span>
             </p>
-            <p className="mt-2 flex items-center justify-between border-t border-outline-variant/10 pt-2 text-lg">
-              <span className="font-semibold text-on-surface">
-                Total price:
-              </span>
+            <p className="mt-2 flex items-center justify-between border-t border-border pt-2 text-lg">
+              <span className="font-semibold text-textMain">Total price:</span>
               <span className="font-headline font-extrabold text-primary">
                 ₹ {bookingPreview.totalPrice || 0}
               </span>
@@ -336,32 +336,36 @@ const ItemDetailPage = () => {
           </div>
 
           {bookingError ? (
-            <p className="mb-3 text-sm text-error">{bookingError}</p>
+            <p className="mb-3 text-sm text-rose-600 dark:text-rose-400">
+              {bookingError}
+            </p>
           ) : null}
           {bookingSuccess ? (
-            <p className="mb-3 text-sm text-emerald-600">{bookingSuccess}</p>
+            <p className="mb-3 text-sm text-emerald-600 dark:text-emerald-400">
+              {bookingSuccess}
+            </p>
           ) : null}
 
           <button
             type="button"
             onClick={handleBookNow}
             disabled={isInvalidBookingAction}
-            className="mb-8 w-full rounded-full bg-gradient-to-r from-primary to-primary-container py-4 font-headline text-lg font-bold text-white shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+            className="mb-8 w-full rounded-xl bg-primary py-4 font-headline text-lg font-bold text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isBooking ? "Booking..." : "Book Now"}
           </button>
 
-          <div className="border-t border-outline-variant/20 pt-6">
+          <div className="border-t border-border pt-6">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-high font-bold text-on-surface-variant">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background font-bold text-textMain/75">
                 {item.owner?.name ? item.owner.name.slice(0, 1) : "O"}
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-textMain/65">
                   Owner
                 </p>
                 {item.owner?.name ? (
-                  <p className="font-bold text-on-surface">{item.owner.name}</p>
+                  <p className="font-bold text-textMain">{item.owner.name}</p>
                 ) : null}
                 {item.owner?.email ? (
                   <p className="text-xs font-medium text-primary">
@@ -380,7 +384,7 @@ const ItemDetailPage = () => {
           onClick={closeZoomModal}
         >
           <div
-            className="rounded-lg bg-white p-4"
+            className="rounded-2xl border border-border bg-card p-4 shadow-lg"
             onClick={(event) => event.stopPropagation()}
           >
             <img
@@ -396,7 +400,7 @@ const ItemDetailPage = () => {
                 onClick={() =>
                   setZoomLevel((previous) => Math.min(previous + 0.2, 3))
                 }
-                className="rounded border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100"
+                className="rounded-xl border border-border px-3 py-1 text-sm text-textMain transition-all duration-200 hover:bg-background"
               >
                 +
               </button>
@@ -405,7 +409,7 @@ const ItemDetailPage = () => {
                 onClick={() =>
                   setZoomLevel((previous) => Math.max(previous - 0.2, 1))
                 }
-                className="rounded border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100"
+                className="rounded-xl border border-border px-3 py-1 text-sm text-textMain transition-all duration-200 hover:bg-background"
               >
                 -
               </button>
@@ -415,7 +419,7 @@ const ItemDetailPage = () => {
               <button
                 type="button"
                 onClick={closeZoomModal}
-                className="rounded bg-slate-900 px-3 py-1 text-sm text-white hover:bg-slate-700"
+                className="rounded-xl bg-primary px-3 py-1 text-sm text-white transition-all duration-200 hover:brightness-110"
               >
                 Close
               </button>

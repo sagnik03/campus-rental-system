@@ -53,7 +53,7 @@ const SignupPage = () => {
   };
 
   return (
-    <section className="mx-auto grid w-full max-w-6xl overflow-hidden rounded-2xl bg-surface-container-lowest shadow-[0_24px_48px_-12px_rgba(25,28,30,0.06)] ring-1 ring-outline-variant/15 md:grid-cols-2">
+    <section className="mx-auto grid w-full max-w-6xl overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-200 md:grid-cols-2">
       <div className="relative hidden min-h-[620px] md:block">
         <img
           alt="Campus"
@@ -74,10 +74,10 @@ const SignupPage = () => {
 
       <div className="p-8 md:p-16">
         <div className="mb-10 text-center md:text-left">
-          <h1 className="font-headline text-3xl font-bold text-on-surface">
+          <h1 className="font-headline text-3xl font-bold text-textMain">
             Create account
           </h1>
-          <p className="mt-2 text-on-surface-variant">
+          <p className="mt-2 text-textMain/75">
             Enter your details to register for the campus marketplace.
           </p>
         </div>
@@ -85,7 +85,7 @@ const SignupPage = () => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label
-              className="block text-sm font-medium text-on-surface-variant"
+              className="block text-sm font-medium text-textMain/75"
               htmlFor="name"
             >
               Full Name
@@ -97,14 +97,14 @@ const SignupPage = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border-0 ring-1 ring-outline-variant bg-surface-container-lowest px-4 py-3.5 text-on-surface placeholder:text-slate-400 focus:ring-2 focus:ring-primary"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="Alex Johnson"
             />
           </div>
 
           <div className="space-y-2">
             <label
-              className="block text-sm font-medium text-on-surface-variant"
+              className="block text-sm font-medium text-textMain/75"
               htmlFor="email"
             >
               University Email
@@ -116,14 +116,14 @@ const SignupPage = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border-0 ring-1 ring-outline-variant bg-surface-container-lowest px-4 py-3.5 text-on-surface placeholder:text-slate-400 focus:ring-2 focus:ring-primary"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="alex@university.edu"
             />
           </div>
 
           <div className="space-y-2">
             <label
-              className="block text-sm font-medium text-on-surface-variant"
+              className="block text-sm font-medium text-textMain/75"
               htmlFor="password"
             >
               Password
@@ -135,23 +135,25 @@ const SignupPage = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border-0 ring-1 ring-outline-variant bg-surface-container-lowest px-4 py-3.5 text-on-surface placeholder:text-slate-400 focus:ring-2 focus:ring-primary"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="••••••••"
             />
           </div>
 
-          {error ? <p className="text-sm text-error">{error}</p> : null}
+          {error ? (
+            <p className="text-sm text-rose-600 dark:text-rose-400">{error}</p>
+          ) : null}
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-full bg-indigo-700 px-6 py-4 font-headline font-semibold text-white shadow-lg shadow-indigo-700/25 transition-all duration-200 hover:bg-indigo-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full rounded-xl bg-primary px-6 py-4 font-headline font-semibold text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isSubmitting ? "Creating account..." : "Signup"}
           </button>
         </form>
 
-        <p className="mt-8 border-t border-outline-variant/10 pt-8 text-center text-sm text-on-surface-variant md:text-left">
+        <p className="mt-8 border-t border-border pt-8 text-center text-sm text-textMain/75 md:text-left">
           Already have an account?{" "}
           <Link
             to="/login"

@@ -181,7 +181,7 @@ const PaymentPage = () => {
 
   if (isLoadingBooking) {
     return (
-      <p className="mx-auto w-full max-w-4xl text-sm text-slate-600">
+      <p className="mx-auto w-full max-w-4xl text-sm text-textMain/75">
         Loading booking details...
       </p>
     );
@@ -197,7 +197,7 @@ const PaymentPage = () => {
 
   if (!booking) {
     return (
-      <p className="mx-auto w-full max-w-4xl text-sm text-slate-600">
+      <p className="mx-auto w-full max-w-4xl text-sm text-textMain/75">
         Booking not found
       </p>
     );
@@ -205,29 +205,29 @@ const PaymentPage = () => {
 
   return (
     <section className="mx-auto w-full max-w-4xl space-y-4">
-      <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h1 className="text-2xl font-semibold text-slate-900">
+      <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
+        <h1 className="text-2xl font-semibold text-textMain">
           Complete Payment
         </h1>
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="mt-2 text-sm text-textMain/75">
           Upload payment screenshot for manual verification by the item owner.
         </p>
 
-        <div className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+        <div className="mt-4 grid gap-2 text-sm text-textMain/80 sm:grid-cols-2">
           <p>
-            <span className="font-medium text-slate-900">Item:</span>{" "}
+            <span className="font-medium text-textMain">Item:</span>{" "}
             {itemTitle || "Item"}
           </p>
           <p>
-            <span className="font-medium text-slate-900">Amount:</span> ₹{" "}
+            <span className="font-medium text-textMain">Amount:</span> ₹{" "}
             {booking.totalPrice}
           </p>
           <p>
-            <span className="font-medium text-slate-900">Start date:</span>{" "}
+            <span className="font-medium text-textMain">Start date:</span>{" "}
             {formatDate(booking.startDate)}
           </p>
           <p>
-            <span className="font-medium text-slate-900">End date:</span>{" "}
+            <span className="font-medium text-textMain">End date:</span>{" "}
             {formatDate(booking.endDate)}
           </p>
         </div>
@@ -235,9 +235,9 @@ const PaymentPage = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200"
+        className="rounded-2xl border border-border bg-card p-6 shadow-md"
       >
-        <h2 className="text-lg font-semibold text-slate-900">
+        <h2 className="text-lg font-semibold text-textMain">
           Upload Screenshot
         </h2>
 
@@ -245,7 +245,7 @@ const PaymentPage = () => {
           <div>
             <label
               htmlFor="screenshot"
-              className="mb-1 block text-sm font-medium text-slate-700"
+              className="mb-1 block text-sm font-medium text-textMain/80"
             >
               Payment Screenshot
             </label>
@@ -259,17 +259,19 @@ const PaymentPage = () => {
                 setPaymentError("");
                 setScreenshotFile(event.target.files?.[0] || null);
               }}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-textMain"
             />
           </div>
 
           {screenshotPreviewUrl ? (
             <div>
-              <p className="mb-1 text-sm font-medium text-slate-700">Preview</p>
+              <p className="mb-1 text-sm font-medium text-textMain/80">
+                Preview
+              </p>
               <img
                 src={screenshotPreviewUrl}
                 alt="Payment screenshot preview"
-                className="h-48 w-full rounded-md object-cover sm:w-80"
+                className="h-48 w-full rounded-xl border border-border object-cover sm:w-80"
               />
             </div>
           ) : null}
@@ -277,7 +279,7 @@ const PaymentPage = () => {
           <div>
             <label
               htmlFor="transactionRef"
-              className="mb-1 block text-sm font-medium text-slate-700"
+              className="mb-1 block text-sm font-medium text-textMain/80"
             >
               Transaction Reference (optional)
             </label>
@@ -287,7 +289,7 @@ const PaymentPage = () => {
               value={transactionRef}
               onChange={(event) => setTransactionRef(event.target.value)}
               placeholder="UPI/transaction reference"
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-slate-900/20 focus:ring"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
@@ -296,21 +298,23 @@ const PaymentPage = () => {
           <p className="mt-4 text-sm text-rose-600">{paymentError}</p>
         ) : null}
         {paymentSuccess ? (
-          <p className="mt-4 text-sm text-emerald-600">{paymentSuccess}</p>
+          <p className="mt-4 text-sm text-emerald-600 dark:text-emerald-400">
+            {paymentSuccess}
+          </p>
         ) : null}
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
             disabled={isSubmitting || !screenshotFile}
-            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-70"
+            className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isSubmitting ? "Uploading..." : "Submit Payment"}
           </button>
 
           <Link
             to="/"
-            className="rounded-md border border-slate-300 px-4 py-2 text-center text-sm font-medium text-slate-700 hover:bg-slate-50"
+            className="rounded-xl border border-border px-4 py-2 text-center text-sm font-medium text-textMain transition-all duration-200 hover:bg-background"
           >
             Back to Home
           </Link>

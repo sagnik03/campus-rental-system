@@ -52,12 +52,12 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="mx-auto w-full max-w-md rounded-2xl bg-surface-container-lowest p-8 shadow-lg ring-1 ring-outline-variant/15 md:p-10">
+    <section className="mx-auto w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-lg transition-all duration-200 md:p-10">
       <div className="mb-10 text-center">
-        <h1 className="font-headline text-3xl font-bold text-on-surface">
+        <h1 className="font-headline text-3xl font-bold text-textMain">
           Welcome back
         </h1>
-        <p className="mt-2 text-sm text-on-surface-variant">
+        <p className="mt-2 text-sm text-textMain/75">
           Access your curated campus rental listings and profile.
         </p>
       </div>
@@ -65,7 +65,7 @@ const LoginPage = () => {
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
-            className="mb-2 ml-1 block text-xs font-semibold uppercase tracking-wider text-outline"
+            className="mb-2 ml-1 block text-xs font-semibold uppercase tracking-wider text-textMain/75"
             htmlFor="email"
           >
             Email Address
@@ -77,7 +77,7 @@ const LoginPage = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border-0 bg-surface-container-low px-4 py-3.5 text-on-surface placeholder:text-outline/60 focus:ring-2 focus:ring-primary/20"
+            className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
             placeholder="name@university.edu"
           />
         </div>
@@ -85,7 +85,7 @@ const LoginPage = () => {
         <div>
           <div className="mb-2 ml-1 flex items-center justify-between">
             <label
-              className="block text-xs font-semibold uppercase tracking-wider text-outline"
+              className="block text-xs font-semibold uppercase tracking-wider text-textMain/75"
               htmlFor="password"
             >
               Password
@@ -99,23 +99,25 @@ const LoginPage = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full rounded-lg border-0 bg-surface-container-low px-4 py-3.5 text-on-surface placeholder:text-outline/60 focus:ring-2 focus:ring-primary/20"
+            className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
             placeholder="••••••••"
           />
         </div>
 
-        {error ? <p className="text-sm text-error">{error}</p> : null}
+        {error ? (
+          <p className="text-sm text-rose-600 dark:text-rose-400">{error}</p>
+        ) : null}
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="group flex w-full items-center justify-center gap-2 rounded-full bg-indigo-700 py-3.5 font-headline font-bold text-white shadow-md shadow-indigo-700/25 transition-all hover:bg-indigo-800 hover:shadow-lg hover:shadow-indigo-800/30 disabled:cursor-not-allowed disabled:opacity-70"
+          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 font-headline font-bold text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
         >
           <span>{isSubmitting ? "Logging in..." : "Login"}</span>
         </button>
       </form>
 
-      <p className="mt-8 border-t border-outline-variant/10 pt-8 text-center text-sm text-on-surface-variant">
+      <p className="mt-8 border-t border-border pt-8 text-center text-sm text-textMain/75">
         New user?{" "}
         <Link
           to="/signup"

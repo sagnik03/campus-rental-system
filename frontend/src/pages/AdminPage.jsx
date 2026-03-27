@@ -36,14 +36,18 @@ const AdminPage = () => {
 
   const getStatusBadgeClassName = (status) => {
     if (status === "confirmed") {
-      return "bg-emerald-100 text-emerald-700 ring-emerald-200";
+      return "bg-emerald-100 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:ring-emerald-800";
     }
 
     if (status === "pending") {
-      return "bg-amber-100 text-amber-700 ring-amber-200";
+      return "bg-amber-100 text-amber-700 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:ring-amber-800";
     }
 
-    return "bg-slate-100 text-slate-700 ring-slate-200";
+    if (status === "rejected") {
+      return "bg-rose-100 text-rose-700 ring-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:ring-rose-800";
+    }
+
+    return "bg-background text-textMain/80 ring-border";
   };
 
   const fetchTabData = async (tabName) => {
@@ -134,8 +138,8 @@ const AdminPage = () => {
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto w-full max-w-4xl rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/20">
-        <h1 className="font-headline text-3xl font-bold text-on-surface">
+      <section className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-8 shadow-md">
+        <h1 className="font-headline text-3xl font-bold text-textMain">
           Admin Dashboard
         </h1>
         <p className="mt-2 text-sm text-rose-600">
@@ -147,8 +151,8 @@ const AdminPage = () => {
 
   if (!isAdmin) {
     return (
-      <section className="mx-auto w-full max-w-4xl rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/20">
-        <h1 className="font-headline text-3xl font-bold text-on-surface">
+      <section className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-8 shadow-md">
+        <h1 className="font-headline text-3xl font-bold text-textMain">
           Admin Dashboard
         </h1>
         <p className="mt-2 text-sm text-rose-600">
@@ -160,26 +164,26 @@ const AdminPage = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl space-y-8">
-      <div className="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-8 shadow-sm md:p-12">
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-md md:p-12">
         <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/4 rounded-full bg-primary/5 blur-3xl" />
-        <h1 className="relative z-10 font-headline text-4xl font-bold tracking-tight text-on-surface md:text-5xl">
+        <h1 className="relative z-10 font-headline text-4xl font-bold tracking-tight text-textMain md:text-5xl">
           Admin Dashboard
         </h1>
-        <p className="relative z-10 mt-3 max-w-2xl text-on-surface-variant">
+        <p className="relative z-10 mt-3 max-w-2xl text-textMain/75">
           Manage users, listings, bookings and payments.
         </p>
       </div>
 
-      <div className="flex w-fit flex-wrap gap-2 rounded-full bg-surface-container-low p-1.5">
+      <div className="flex w-fit flex-wrap gap-2 rounded-2xl border border-border bg-card p-2 shadow-md">
         {TABS.map((tab) => (
           <button
             key={tab}
             type="button"
             onClick={() => setActiveTab(tab)}
-            className={`rounded-full px-8 py-2.5 font-headline text-sm font-semibold capitalize transition-all duration-300 ${
+            className={`rounded-xl px-8 py-2.5 font-headline text-sm font-semibold capitalize transition-all duration-200 ${
               activeTab === tab
-                ? "bg-primary text-on-primary shadow-lg shadow-primary/20"
-                : "text-on-surface-variant hover:bg-surface-container-high"
+                ? "bg-primary text-white shadow-md"
+                : "border border-border bg-background text-textMain/80 hover:brightness-105"
             }`}
           >
             {tab}
@@ -188,19 +192,21 @@ const AdminPage = () => {
       </div>
 
       {isLoading ? (
-        <p className="text-sm text-slate-600">Loading {activeTab}...</p>
+        <p className="text-sm text-textMain/75">Loading {activeTab}...</p>
       ) : null}
       {error ? <p className="text-sm text-rose-600">{error}</p> : null}
       {successMessage ? (
-        <p className="text-sm text-emerald-600">{successMessage}</p>
+        <p className="text-sm text-emerald-600 dark:text-emerald-400">
+          {successMessage}
+        </p>
       ) : null}
 
       {!isLoading ? (
-        <div className="overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm ring-1 ring-outline-variant/20">
+        <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-md">
           {activeTab === "users" ? (
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-surface-container-low/50">
-                <tr className="text-on-surface-variant">
+              <thead className="bg-background">
+                <tr className="text-textMain/75">
                   <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">
                     Name
                   </th>
@@ -212,19 +218,19 @@ const AdminPage = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-variant/30">
-                {data.users.map((user) => (
+              <tbody className="divide-y divide-border">
+                {data.users.map((user, index) => (
                   <tr
                     key={user._id}
-                    className="transition-colors hover:bg-surface-container-low"
+                    className={`transition-all duration-200 hover:bg-background ${
+                      index % 2 === 0 ? "bg-card" : "bg-background/60"
+                    }`}
                   >
-                    <td className="px-6 py-4 font-headline font-semibold text-on-surface">
+                    <td className="px-6 py-4 font-headline font-semibold text-textMain">
                       {user.name}
                     </td>
-                    <td className="px-6 py-4 text-on-surface-variant">
-                      {user.email}
-                    </td>
-                    <td className="px-6 py-4 capitalize text-on-surface">
+                    <td className="px-6 py-4 text-textMain/75">{user.email}</td>
+                    <td className="px-6 py-4 capitalize text-textMain">
                       {user.role}
                     </td>
                   </tr>
@@ -235,8 +241,8 @@ const AdminPage = () => {
 
           {activeTab === "items" ? (
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-surface-container-low/50">
-                <tr className="text-on-surface-variant">
+              <thead className="bg-background">
+                <tr className="text-textMain/75">
                   <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">
                     Title
                   </th>
@@ -251,26 +257,28 @@ const AdminPage = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-variant/30">
-                {data.items.map((item) => (
+              <tbody className="divide-y divide-border">
+                {data.items.map((item, index) => (
                   <tr
                     key={item._id}
-                    className="transition-colors hover:bg-surface-container-low"
+                    className={`transition-all duration-200 hover:bg-background ${
+                      index % 2 === 0 ? "bg-card" : "bg-background/60"
+                    }`}
                   >
-                    <td className="px-6 py-4 font-headline font-semibold text-on-surface">
+                    <td className="px-6 py-4 font-headline font-semibold text-textMain">
                       {item.title}
                     </td>
-                    <td className="px-6 py-4 text-on-surface-variant">
+                    <td className="px-6 py-4 text-textMain/75">
                       {item.owner?.email || "Unknown"}
                     </td>
-                    <td className="px-6 py-4 text-on-surface">
+                    <td className="px-6 py-4 text-textMain">
                       ₹ {item.pricePerDay}
                     </td>
                     <td className="px-6 py-4">
                       <button
                         type="button"
                         onClick={() => handleDeleteItem(item._id)}
-                        className="rounded-xl border border-error-container px-3 py-2 text-error transition-colors hover:bg-error/5"
+                        className="rounded-xl border border-rose-300 px-3 py-2 text-rose-600 transition-all duration-200 hover:bg-rose-50 dark:border-rose-700 dark:hover:bg-rose-900/20"
                       >
                         Delete
                       </button>
@@ -283,8 +291,8 @@ const AdminPage = () => {
 
           {activeTab === "bookings" ? (
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-surface-container-low/50">
-                <tr className="text-on-surface-variant">
+              <thead className="bg-background">
+                <tr className="text-textMain/75">
                   <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">
                     Item
                   </th>
@@ -299,22 +307,24 @@ const AdminPage = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-variant/30">
-                {data.bookings.map((booking) => (
+              <tbody className="divide-y divide-border">
+                {data.bookings.map((booking, index) => (
                   <tr
                     key={booking._id}
-                    className="transition-colors hover:bg-surface-container-low"
+                    className={`transition-all duration-200 hover:bg-background ${
+                      index % 2 === 0 ? "bg-card" : "bg-background/60"
+                    }`}
                   >
-                    <td className="px-6 py-4 font-headline font-semibold text-on-surface">
+                    <td className="px-6 py-4 font-headline font-semibold text-textMain">
                       {booking.item?.title || booking.item}
                     </td>
-                    <td className="px-6 py-4 text-on-surface-variant">
+                    <td className="px-6 py-4 text-textMain/75">
                       {booking.user?.email || booking.user}
                     </td>
-                    <td className="px-6 py-4 text-on-surface">
+                    <td className="px-6 py-4 text-textMain">
                       ₹ {booking.totalPrice}
                     </td>
-                    <td className="px-6 py-4 capitalize text-on-surface">
+                    <td className="px-6 py-4 capitalize text-textMain">
                       {booking.status}
                     </td>
                   </tr>
@@ -325,8 +335,8 @@ const AdminPage = () => {
 
           {activeTab === "payments" ? (
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-surface-container-low/50">
-                <tr className="text-on-surface-variant">
+              <thead className="bg-background">
+                <tr className="text-textMain/75">
                   <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">
                     Booking
                   </th>
@@ -347,19 +357,21 @@ const AdminPage = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-variant/30">
-                {data.payments.map((payment) => (
+              <tbody className="divide-y divide-border">
+                {data.payments.map((payment, index) => (
                   <tr
                     key={payment._id}
-                    className="transition-colors hover:bg-surface-container-low"
+                    className={`transition-all duration-200 hover:bg-background ${
+                      index % 2 === 0 ? "bg-card" : "bg-background/60"
+                    }`}
                   >
-                    <td className="px-6 py-4 text-on-surface">
+                    <td className="px-6 py-4 text-textMain">
                       {payment.booking?._id || payment.booking || "-"}
                     </td>
-                    <td className="px-6 py-4 text-on-surface-variant">
+                    <td className="px-6 py-4 text-textMain/75">
                       {payment.payer?.email || payment.payer}
                     </td>
-                    <td className="px-6 py-4 text-on-surface">
+                    <td className="px-6 py-4 text-textMain">
                       ₹ {payment.amount}
                     </td>
                     <td className="px-6 py-4">
@@ -376,7 +388,7 @@ const AdminPage = () => {
                         <img
                           src={getImageUrl(payment.screenshot)}
                           alt="Payment screenshot"
-                          className="h-14 w-20 cursor-pointer rounded-md object-cover ring-1 ring-slate-200 transition hover:scale-105"
+                          className="h-14 w-20 cursor-pointer rounded-lg border border-border object-cover transition-all duration-200 hover:scale-105"
                           onClick={() => openPreview(payment.screenshot)}
                         />
                       ) : (
@@ -393,7 +405,7 @@ const AdminPage = () => {
                               confirmingPaymentId === payment._id ||
                               rejectingPaymentId === payment._id
                             }
-                            className="rounded-xl border border-emerald-300 px-3 py-2 text-emerald-700 transition-colors hover:bg-emerald-50 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="rounded-xl border border-emerald-300 px-3 py-2 text-emerald-700 transition-all duration-200 hover:bg-emerald-50 dark:border-emerald-700 dark:hover:bg-emerald-900/20 disabled:cursor-not-allowed disabled:opacity-60"
                           >
                             {confirmingPaymentId === payment._id
                               ? "Confirming..."
@@ -407,7 +419,7 @@ const AdminPage = () => {
                               confirmingPaymentId === payment._id ||
                               rejectingPaymentId === payment._id
                             }
-                            className="rounded-xl border border-rose-300 px-3 py-2 text-rose-700 transition-colors hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="rounded-xl border border-rose-300 px-3 py-2 text-rose-700 transition-all duration-200 hover:bg-rose-50 dark:border-rose-700 dark:hover:bg-rose-900/20 disabled:cursor-not-allowed disabled:opacity-60"
                           >
                             {rejectingPaymentId === payment._id
                               ? "Rejecting..."
@@ -415,7 +427,7 @@ const AdminPage = () => {
                           </button>
                         </div>
                       ) : (
-                        <span className="text-slate-500">-</span>
+                        <span className="text-textMain/60">-</span>
                       )}
                     </td>
                   </tr>
@@ -432,7 +444,7 @@ const AdminPage = () => {
           onClick={closePreview}
         >
           <div
-            className="relative rounded-2xl bg-surface-container-lowest p-4"
+            className="relative rounded-2xl border border-border bg-card p-4 shadow-lg"
             onClick={(event) => event.stopPropagation()}
           >
             <img
@@ -448,7 +460,7 @@ const AdminPage = () => {
                 onClick={() =>
                   setZoomLevel((previous) => Math.min(previous + 0.2, 3))
                 }
-                className="rounded border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100"
+                className="rounded-xl border border-border px-3 py-1 text-sm text-textMain transition-all duration-200 hover:bg-background"
               >
                 Zoom In
               </button>
@@ -457,7 +469,7 @@ const AdminPage = () => {
                 onClick={() =>
                   setZoomLevel((previous) => Math.max(previous - 0.2, 1))
                 }
-                className="rounded border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100"
+                className="rounded-xl border border-border px-3 py-1 text-sm text-textMain transition-all duration-200 hover:bg-background"
               >
                 Zoom Out
               </button>
@@ -466,7 +478,7 @@ const AdminPage = () => {
             <button
               type="button"
               onClick={closePreview}
-              className="absolute right-2 top-2 rounded bg-red-500 px-2 py-1 text-sm text-white"
+              className="absolute right-2 top-2 rounded-lg bg-rose-500 px-2 py-1 text-sm text-white transition-all duration-200 hover:brightness-110"
             >
               X
             </button>

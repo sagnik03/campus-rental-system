@@ -144,8 +144,8 @@ const MyListingsPage = () => {
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto w-full max-w-4xl rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/20">
-        <h1 className="font-headline text-3xl font-bold tracking-tight text-on-surface">
+      <section className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-8 shadow-md">
+        <h1 className="font-headline text-3xl font-bold tracking-tight text-textMain">
           My Listings
         </h1>
         <p className="mt-2 text-sm text-rose-600">
@@ -157,35 +157,35 @@ const MyListingsPage = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl space-y-8">
-      <div className="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-8 shadow-sm md:p-12">
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-md md:p-12">
         <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/4 rounded-full bg-primary/5 blur-3xl" />
-        <h1 className="relative z-10 font-headline text-4xl font-bold tracking-tight text-on-surface md:text-5xl">
+        <h1 className="relative z-10 font-headline text-4xl font-bold tracking-tight text-textMain md:text-5xl">
           My Listings
         </h1>
-        <p className="relative z-10 mt-3 max-w-2xl text-on-surface-variant">
+        <p className="relative z-10 mt-3 max-w-2xl text-textMain/75">
           Manage your published rental items from here.
         </p>
         <Link
           to="/add-item"
-          className="relative z-10 mt-8 inline-flex items-center rounded-full bg-indigo-700 px-6 py-3 font-semibold text-white shadow-md shadow-indigo-700/25 transition-all hover:bg-indigo-800 hover:shadow-lg"
+          className="relative z-10 mt-8 inline-flex items-center rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-md transition-all duration-200 hover:brightness-110"
         >
           Create New Listing
         </Link>
       </div>
 
       {isLoading ? (
-        <p className="text-sm text-slate-600">Loading your listings...</p>
+        <p className="text-sm text-textMain/75">Loading your listings...</p>
       ) : null}
       {error ? <p className="text-sm text-rose-600">{error}</p> : null}
 
       {!isLoading && !error && items.length === 0 ? (
-        <div className="rounded-2xl bg-surface-container-lowest p-6 shadow-sm ring-1 ring-outline-variant/20">
-          <p className="text-sm text-slate-600">
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
+          <p className="text-sm text-textMain/75">
             You have not created any listings yet.
           </p>
           <Link
             to="/add-item"
-            className="mt-3 inline-block rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+            className="mt-3 inline-block rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:brightness-110"
           >
             Add Your First Item
           </Link>
@@ -197,7 +197,7 @@ const MyListingsPage = () => {
           {items.map((item) => (
             <article
               key={item._id}
-              className="group overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm transition-all duration-300 hover:shadow-xl"
+              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-md transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
             >
               <img
                 src={getImageUrl(item.images?.[0], item.category)}
@@ -205,26 +205,26 @@ const MyListingsPage = () => {
                 className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="space-y-4 p-8">
-                <h2 className="font-headline text-2xl font-bold text-on-surface">
+                <h2 className="font-headline text-2xl font-bold text-textMain">
                   {item.title}
                 </h2>
-                <p className="line-clamp-2 text-sm text-on-surface-variant">
+                <p className="line-clamp-2 text-sm text-textMain/75">
                   {item.description}
                 </p>
                 <div className="flex gap-4">
-                  <div className="flex-1 rounded-xl bg-surface-container-low px-4 py-3">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+                  <div className="flex-1 rounded-xl border border-border bg-background px-4 py-3">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-textMain/65">
                       Daily Rate
                     </span>
                     <span className="font-headline text-xl font-bold text-primary">
                       ₹ {item.pricePerDay}
                     </span>
                   </div>
-                  <div className="flex-1 rounded-xl bg-surface-container-low px-4 py-3">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+                  <div className="flex-1 rounded-xl border border-border bg-background px-4 py-3">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-textMain/65">
                       Security Deposit
                     </span>
-                    <span className="font-headline text-xl font-bold text-on-surface">
+                    <span className="font-headline text-xl font-bold text-textMain">
                       ₹ {item.securityDeposit}
                     </span>
                   </div>
@@ -233,14 +233,14 @@ const MyListingsPage = () => {
                   <button
                     type="button"
                     onClick={() => startEdit(item._id)}
-                    className="flex-1 rounded-xl border border-outline-variant px-3 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
+                    className="flex-1 rounded-xl border border-border px-3 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:bg-background"
                   >
                     Edit
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(item._id)}
-                    className="flex-1 rounded-xl border border-error-container px-3 py-3 text-sm font-semibold text-error transition-colors hover:bg-error/5"
+                    className="flex-1 rounded-xl border border-rose-300 px-3 py-3 text-sm font-semibold text-rose-600 transition-all duration-200 hover:bg-rose-50 dark:border-rose-700 dark:hover:bg-rose-900/20"
                   >
                     Delete
                   </button>
@@ -254,9 +254,9 @@ const MyListingsPage = () => {
       {editingItemId ? (
         <form
           onSubmit={handleSaveEdit}
-          className="rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/20"
+          className="rounded-2xl border border-border bg-card p-8 shadow-md"
         >
-          <h2 className="font-headline text-2xl font-bold text-on-surface">
+          <h2 className="font-headline text-2xl font-bold text-textMain">
             Edit Listing
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -265,7 +265,7 @@ const MyListingsPage = () => {
               value={editFormData.title}
               onChange={handleEditChange}
               required
-              className="rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+              className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="Title"
             />
             <input
@@ -273,7 +273,7 @@ const MyListingsPage = () => {
               value={editFormData.category}
               onChange={handleEditChange}
               required
-              className="rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+              className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="Category"
             />
             <input
@@ -284,7 +284,7 @@ const MyListingsPage = () => {
               value={editFormData.pricePerDay}
               onChange={handleEditChange}
               required
-              className="rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+              className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="Price per day"
             />
             <input
@@ -295,7 +295,7 @@ const MyListingsPage = () => {
               value={editFormData.securityDeposit}
               onChange={handleEditChange}
               required
-              className="rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+              className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               placeholder="Security deposit"
             />
           </div>
@@ -305,12 +305,12 @@ const MyListingsPage = () => {
             value={editFormData.description}
             onChange={handleEditChange}
             required
-            className="mt-4 w-full rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+            className="mt-4 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
             placeholder="Description"
           />
           <div className="mt-4">
             <label
-              className="mb-1 block text-sm font-medium text-on-surface-variant"
+              className="mb-1 block text-sm font-medium text-textMain/75"
               htmlFor="editImages"
             >
               Replace Images (optional, up to 5)
@@ -325,10 +325,10 @@ const MyListingsPage = () => {
                   Array.from(event.target.files || []).slice(0, 5),
                 )
               }
-              className="w-full rounded-xl border-0 bg-surface-container-low px-4 py-3 text-sm"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-textMain"
             />
             {editImageFiles.length ? (
-              <p className="mt-1 text-xs text-on-surface-variant">
+              <p className="mt-1 text-xs text-textMain/75">
                 {editImageFiles.length} new image(s) will replace current images
               </p>
             ) : null}
@@ -337,14 +337,14 @@ const MyListingsPage = () => {
             <button
               type="submit"
               disabled={isSaving}
-              className="rounded-full bg-indigo-700 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-700/20 transition-all hover:bg-indigo-800 disabled:opacity-70"
+              className="rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:opacity-70"
             >
               {isSaving ? "Saving..." : "Save Changes"}
             </button>
             <button
               type="button"
               onClick={() => setEditingItemId("")}
-              className="rounded-full border border-outline-variant px-6 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container-high"
+              className="rounded-xl border border-border px-6 py-3 text-sm font-semibold text-textMain transition-all duration-200 hover:bg-background"
             >
               Cancel
             </button>

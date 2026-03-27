@@ -21,11 +21,11 @@ const AddItemPage = () => {
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto w-full max-w-3xl rounded-2xl bg-surface-container-lowest p-8 shadow-sm ring-1 ring-outline-variant/20">
-        <h1 className="font-headline text-3xl font-bold tracking-tight text-on-surface">
+      <section className="mx-auto w-full max-w-3xl rounded-2xl border border-border bg-card p-8 shadow-md">
+        <h1 className="font-headline text-3xl font-bold tracking-tight text-textMain">
           Create New Listing
         </h1>
-        <p className="mt-2 text-sm text-error">
+        <p className="mt-2 text-sm text-rose-600 dark:text-rose-400">
           Please login to create a listing.
         </p>
       </section>
@@ -66,13 +66,13 @@ const AddItemPage = () => {
 
   return (
     <section className="mx-auto w-full max-w-4xl space-y-8">
-      <div className="overflow-hidden rounded-2xl bg-surface-container-lowest shadow-lg shadow-[rgba(25,28,30,0.06)] ring-1 ring-outline-variant/15">
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
         <div className="p-8 md:p-12">
           <div className="mb-10 text-center">
-            <h1 className="font-headline text-3xl font-bold tracking-tight text-on-surface">
+            <h1 className="font-headline text-3xl font-bold tracking-tight text-textMain">
               Create New Listing
             </h1>
-            <p className="mt-2 text-on-surface-variant">
+            <p className="mt-2 text-textMain/75">
               Share your item with the campus community and start earning.
             </p>
           </div>
@@ -81,7 +81,7 @@ const AddItemPage = () => {
             <div className="space-y-2">
               <label
                 htmlFor="title"
-                className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                className="ml-1 block text-sm font-semibold text-textMain/75"
               >
                 Listing Title
               </label>
@@ -91,14 +91,14 @@ const AddItemPage = () => {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border-0 bg-surface-container-low px-4 py-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20"
+                className="w-full rounded-xl border border-border bg-background px-4 py-4 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div className="space-y-2">
               <label
                 htmlFor="category"
-                className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                className="ml-1 block text-sm font-semibold text-textMain/75"
               >
                 Category
               </label>
@@ -108,14 +108,14 @@ const AddItemPage = () => {
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border-0 bg-surface-container-low px-4 py-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20"
+                className="w-full rounded-xl border border-border bg-background px-4 py-4 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div className="space-y-2">
               <label
                 htmlFor="description"
-                className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                className="ml-1 block text-sm font-semibold text-textMain/75"
               >
                 Description
               </label>
@@ -126,7 +126,7 @@ const AddItemPage = () => {
                 value={formData.description}
                 onChange={handleChange}
                 required
-                className="w-full resize-none rounded-xl border-0 bg-surface-container-low px-4 py-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20"
+                className="w-full resize-none rounded-xl border border-border bg-background px-4 py-4 text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
               />
             </div>
 
@@ -134,7 +134,7 @@ const AddItemPage = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="pricePerDay"
-                  className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                  className="ml-1 block text-sm font-semibold text-textMain/75"
                 >
                   Price Per Day (₹)
                 </label>
@@ -151,7 +151,7 @@ const AddItemPage = () => {
                     value={formData.pricePerDay}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-xl border-0 bg-surface-container-low py-4 pl-12 pr-4 font-headline font-bold text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20"
+                    className="w-full rounded-xl border border-border bg-background py-4 pl-12 pr-4 font-headline font-bold text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
@@ -159,7 +159,7 @@ const AddItemPage = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="securityDeposit"
-                  className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                  className="ml-1 block text-sm font-semibold text-textMain/75"
                 >
                   Security Deposit (₹)
                 </label>
@@ -176,7 +176,7 @@ const AddItemPage = () => {
                     value={formData.securityDeposit}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-xl border-0 bg-surface-container-low py-4 pl-12 pr-4 font-headline font-bold text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20"
+                    className="w-full rounded-xl border border-border bg-background py-4 pl-12 pr-4 font-headline font-bold text-textMain placeholder:text-textMain/45 outline-none transition-all duration-200 focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
@@ -185,7 +185,7 @@ const AddItemPage = () => {
             <div className="space-y-2">
               <label
                 htmlFor="images"
-                className="ml-1 block text-sm font-semibold text-on-surface-variant"
+                className="ml-1 block text-sm font-semibold text-textMain/75"
               >
                 Item Images (optional, up to 5)
               </label>
@@ -202,33 +202,37 @@ const AddItemPage = () => {
                   }
                   className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
                 />
-                <div className="rounded-2xl border-2 border-dashed border-outline-variant bg-surface-container-lowest p-10 text-center transition-all group-hover:border-primary/50 group-hover:bg-surface-container-low">
+                <div className="rounded-2xl border-2 border-dashed border-border bg-background p-10 text-center transition-all duration-200 group-hover:border-primary group-hover:bg-card">
                   <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                     <span className="material-symbols-outlined text-3xl text-primary">
                       upload_file
                     </span>
                   </div>
-                  <p className="font-semibold text-on-surface">
+                  <p className="font-semibold text-textMain">
                     Click or drag images here
                   </p>
-                  <p className="mt-1 text-xs text-outline">
+                  <p className="mt-1 text-xs text-textMain/60">
                     PNG, JPG or WebP (up to 5 images)
                   </p>
                 </div>
               </div>
               {imageFiles.length ? (
-                <p className="mt-1 text-xs text-on-surface-variant">
+                <p className="mt-1 text-xs text-textMain/75">
                   {imageFiles.length} file(s) selected
                 </p>
               ) : null}
             </div>
 
-            {error ? <p className="text-sm text-error">{error}</p> : null}
+            {error ? (
+              <p className="text-sm text-rose-600 dark:text-rose-400">
+                {error}
+              </p>
+            ) : null}
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex w-full items-center justify-center rounded-full bg-indigo-700 py-4 font-headline font-bold text-white shadow-lg shadow-indigo-700/25 transition-all duration-200 hover:bg-indigo-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+              className="flex w-full items-center justify-center rounded-xl bg-primary py-4 font-headline font-bold text-white shadow-md transition-all duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <span>{isSubmitting ? "Creating..." : "Create Listing"}</span>
             </button>
@@ -236,14 +240,14 @@ const AddItemPage = () => {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-white/20 bg-tertiary-fixed p-8">
-        <span className="inline-block rounded-full bg-white/40 px-3 py-1 text-xs font-bold uppercase tracking-wider text-tertiary">
+      <div className="rounded-3xl border border-border bg-card p-8 shadow-md">
+        <span className="inline-block rounded-full bg-background px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
           Pro Tip
         </span>
-        <h3 className="mt-4 font-headline text-2xl font-extrabold text-tertiary">
+        <h3 className="mt-4 font-headline text-2xl font-extrabold text-textMain">
           Make your listing stand out
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-tertiary-container/80">
+        <p className="mt-2 text-sm leading-relaxed text-textMain/75">
           Listings with multiple clear images usually get more booking requests.
           Use natural light and capture different angles.
         </p>
