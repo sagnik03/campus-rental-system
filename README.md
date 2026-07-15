@@ -217,7 +217,3 @@ backend/uploads/
 This project is open-source and available for learning and development purposes.
 
 ---
-
-## 🎤 Viva Summary
-
-> A full-stack MERN-based rental platform with booking logic, payment verification, and admin controls, designed with scalable architecture and modern UI principles.
